@@ -2,18 +2,31 @@ img {
   width: 100%;
 }
 
-.landing {
-  position: relative;
+.row-header {
+  margin: 0px auto;
+  padding: 0px auto;
+}
+
+.row-content {
+  margin: 0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
+}
+
+.footer {
+  margin: 0px auto;
+  padding: 20px 0px 20px 0px;
+}
+.jumbotron {
   background: url("./img/ararat.jpg") no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  margin-top: -24px;
-  margin-bottom: -50px;
 }
 
-.landing-inner {
-  padding-top: 80px;
+address {
+  font-size: 80%;
+  margin: 0px;
 }
 
 .dark-overlay {
@@ -27,13 +40,4 @@ img {
 
 .card-form {
   opacity: 0.9;
-}
-
-.latest-profiles-img {
-  width: 40px;
-  height: 40px;
-}
-
-.form-control::placeholder {
-  color: #bbb !important;
 }

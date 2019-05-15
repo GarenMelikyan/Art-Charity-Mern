@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Shops from "./Shops";
-import Navbar from "./Navbar";
+import Header from "./Header";
+import Footer from "./Footer";
 import { CHARITIES } from "../shared/charities";
 import CharityDetail from "./CharityDetail";
 
@@ -20,7 +21,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Header />
         <Shops
           charities={this.state.charities}
           onClick={charityId => this.onCharitySelect(charityId)}
@@ -34,6 +35,7 @@ class Main extends Component {
             }
           />
         </div>
+        <Footer />
       </div>
     );
   }
