@@ -3,7 +3,7 @@ import { Card, CardImg, CardBody, CardText, CardTitle } from "reactstrap";
 
 const RenderComments = ({ comments }) => {
   if (comments == null) {
-    return <div />;
+    return <h1> no comments </h1>;
   }
   const list = comments.map(comment => {
     return (
@@ -33,9 +33,10 @@ const RenderCharity = ({ charity }) => {
     return (
       <div className="col-12 col-md-5 m-1">
         <Card>
-          <CardImg width="100%" src={charity.image} alt={charity.name} />
+          <CardImg width="100%" src={charity.image} alt={charity.image} />
           <CardBody>
             <CardTitle>{charity.name}</CardTitle>
+            <CardTitle>{charity.label}</CardTitle>
             <CardText>{charity.description}</CardText>
           </CardBody>
         </Card>
@@ -54,7 +55,7 @@ const CharityDetail = props => {
   return (
     <div className="row">
       <RenderCharity charity={props.charity} />
-      <RenderComments comments={props.charity.comments} />
+      <RenderComments comments={props.comments} />
     </div>
   );
 };

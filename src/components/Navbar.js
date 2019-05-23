@@ -6,8 +6,9 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-light border mb-4">
         <div className="container">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/home">
             <div className="logo-img" alt="Logo image" />
+            Home
           </Link>
           <button
             className="navbar-toggler"
@@ -22,20 +23,22 @@ class Navbar extends Component {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/howitworks">
-                  {" "}
                   How it Works
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/mentops">
-                  {" "}
-                  Charity Shops
+                <Link className="nav-link" to="/shops">
+                  Charities
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/unis">
-                  {" "}
-                  Artsists and Craftsmen
+                <Link className="nav-link" to="/artist">
+                  Arts and Craft Sale
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/contact">
+                  Contact Us
                 </Link>
               </li>
             </ul>

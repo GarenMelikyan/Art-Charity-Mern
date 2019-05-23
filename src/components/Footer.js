@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer(props) {
   return (
@@ -9,16 +10,16 @@ function Footer(props) {
             <h5>Links</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="#">How it works</a>
+                <Link to="#">How it works</Link>
               </li>
               <li>
-                <a href="#">Charities</a>
+                <Link to="shops">Charities</Link>
               </li>
               <li>
-                <a href="#">Artist and Craftsman</a>
+                <Link to="#">Artist and Craftsman</Link>
               </li>
               <li>
-                <a href="contactus.html">Contact Us</a>
+                <Link to="contact">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -41,12 +42,6 @@ function Footer(props) {
           </div>
           <div className="col-12 col-sm-4 align-self-center">
             <div className="text-center">
-              <a
-                className="btn btn-social-icon btn-google"
-                href="http://google.com/+"
-              >
-                <i className="fa fa-google-plus" />
-              </a>
               <a
                 className="btn btn-social-icon btn-facebook"
                 href="http://www.facebook.com/profile.php?id="
@@ -79,7 +74,7 @@ function Footer(props) {
         </div>
         <div className="row justify-content-center">
           <div className="col-auto">
-            <p>© Copyright 2018 Ristorante Con Fusion</p>
+            <p>© Copyright 2019 Art and Charity Armenia</p>
           </div>
         </div>
       </div>

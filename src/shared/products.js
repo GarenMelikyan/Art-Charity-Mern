@@ -1,7 +1,7 @@
-export const CHARITIES = [
+export const PRODUCTS = [
   {
     id: 0,
-    name: "CHARITY 1",
+    name: "Product 1",
     image: "/assets/images/uthappizza.png",
     category: "mains",
     label: "Hot",
@@ -12,7 +12,7 @@ export const CHARITIES = [
   },
   {
     id: 1,
-    name: "CHARITY 2",
+    name: "Product 2",
     image: "/assets/images/zucchipakoda.png",
     category: "appetizer",
     label: "",
@@ -23,7 +23,7 @@ export const CHARITIES = [
   },
   {
     id: 2,
-    name: "3 CHARITY 3",
+    name: "Product 3",
     image: "/assets/images/vadonut.png",
     category: "appetizer",
     label: "New",
@@ -34,7 +34,7 @@ export const CHARITIES = [
   },
   {
     id: 3,
-    name: "4 CHARITY 4",
+    name: "Product 4",
     image: "/assets/images/elaicheesecake.png",
     category: "dessert",
     label: "",

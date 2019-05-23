@@ -1,6 +1,9 @@
 img {
   width: 100%;
 }
+.container {
+  width: 100%;
+}
 
 .row-header {
   margin: 0px auto;
