@@ -35,8 +35,6 @@ class Main extends Component {
           charity0={this.state.charities.filter(charity => charity.featured)[0]}
           charity1={this.state.charities.filter(charity => charity.featured)[1]}
           charity2={this.state.charities.filter(charity => charity.featured)[2]}
-          //promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
-          //leader={this.state.leaders.filter((leader) => leader.featured)[0]}
         />
       );
     };

@@ -1,5 +1,14 @@
 import React from "react";
-import { Card, CardImg, CardBody, CardText, CardTitle } from "reactstrap";
+import {
+  Card,
+  CardImg,
+  CardBody,
+  CardText,
+  CardTitle,
+  Breadcrumb,
+  BreadcrumbItem
+} from "reactstrap";
+import { Link } from "react-router-dom";
 
 const RenderComments = ({ comments }) => {
   if (comments == null) {
@@ -53,9 +62,19 @@ const CharityDetail = props => {
     return <div />;
   }
   return (
-    <div className="row">
-      <RenderCharity charity={props.charity} />
-      <RenderComments comments={props.comments} />
+    <div className="container">
+      <div className="row">
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/shops">Charity Shops</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>{`${props.charity.name}`}</BreadcrumbItem>
+        </Breadcrumb>
+      </div>
+      <div className="row">
+        <RenderCharity charity={props.charity} />
+        <RenderComments comments={props.comments} />
+      </div>
     </div>
   );
 };

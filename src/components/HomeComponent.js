@@ -6,11 +6,12 @@ import { Card, CardImg, CardBody, CardTitle } from "reactstrap";
 function RenderCard({ item }) {
   return (
     <Card>
-      <Link to={`/shops/${item.id}`} />
-      <CardImg src={item.image} alt={item.name} />
-      <CardBody>
-        <CardTitle>{item.name}</CardTitle>
-      </CardBody>
+      <Link to={`/shops/${item.id}`}>
+        <CardImg src={item.image} alt={item.name} />
+        <CardBody>
+          <CardTitle>{item.name}</CardTitle>
+        </CardBody>
+      </Link>
     </Card>
   );
 }
