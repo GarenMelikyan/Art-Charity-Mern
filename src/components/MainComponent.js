@@ -2,39 +2,33 @@ import React, { Component } from "react";
 import Shops from "./Shops";
 import Header from "./Header";
 import Footer from "./Footer";
-import { CHARITIES } from "../shared/charities";
-import { PRODUCTS } from "../shared/products";
 import CharityDetail from "./CharityDetail";
 import Home from "./HomeComponent";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Contact from "./ContactComponent";
-import { COMMENTS } from "../shared/comments";
-import { PROMOTIONS } from "../shared/promotions";
-import { LEADERS } from "../shared/leaders";
+import { connect } from "react-redux";
+
+const mapStateToProps = state => {
+  return {
+    charities: state.charities,
+    comments: state.comments,
+    promotions: state.promotions,
+    leaders: state.leaders
+  };
+};
 
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      charities: CHARITIES,
-      comments: COMMENTS,
-      promotions: PROMOTIONS,
-      leaders: LEADERS,
-      selectedCharity: null
-    };
-  }
-
-  onCharitySelect(charityId) {
-    this.setState({ selectedCharity: charityId });
   }
 
   render() {
     const HomePage = () => {
       return (
         <Home
-          charity0={this.state.charities.filter(charity => charity.featured)[0]}
-          charity1={this.state.charities.filter(charity => charity.featured)[1]}
-          charity2={this.state.charities.filter(charity => charity.featured)[2]}
+          charity0={this.props.charities.filter(charity => charity.featured)[0]}
+          charity1={this.props.charities.filter(charity => charity.featured)[1]}
+          charity2={this.props.charities.filter(charity => charity.featured)[2]}
         />
       );
     };
@@ -43,11 +37,11 @@ class Main extends Component {
       return (
         <CharityDetail
           charity={
-            this.state.charities.filter(
+            this.props.charities.filter(
               charity => charity.id === parseInt(match.params.charityId, 10)
             )[0]
           }
-          comments={this.state.comments.filter(
+          comments={this.props.comments.filter(
             comment =>
               comment.charityId === parseInt(match.params.charityId, 10)
           )}
@@ -64,7 +58,7 @@ class Main extends Component {
           <Route
             exact
             path="/shops"
-            component={() => <Shops charities={this.state.charities} />}
+            component={() => <Shops charities={this.props.charities} />}
           />
           <Route path="/shops/:charityId" component={CharityWithId} />
           <Redirect to="/home" />
@@ -76,4 +70,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default withRouter(connect(mapStateToProps)(Main));
