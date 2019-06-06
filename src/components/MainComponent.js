@@ -7,6 +7,8 @@ import Home from "./HomeComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Contact from "./ContactComponent";
 import { connect } from "react-redux";
+import { addComment, fetchCharities } from "../redux/ActionCreators";
+import { actions } from "react-redux-form";
 
 const mapStateToProps = state => {
   return {
@@ -17,14 +19,43 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  addComment: (charityId, rating, author, comment) =>
+    dispatch(addComment(charityId, rating, author, comment)),
+  fetchCharities: () => {
+    dispatch(fetchCharities());
+  },
+  resetFeedbackForm: () => {
+    dispatch(actions.reset("feedback"));
+  }
+});
+
 class Main extends Component {
+  componentDidMount() {
+    this.props.fetchCharities();
+  }
+
   render() {
     const HomePage = () => {
       return (
         <Home
-          charity0={this.props.charities.filter(charity => charity.featured)[0]}
-          charity1={this.props.charities.filter(charity => charity.featured)[1]}
-          charity2={this.props.charities.filter(charity => charity.featured)[2]}
+          charity0={
+            this.props.charities.charities.filter(
+              charity => charity.featured
+            )[0]
+          }
+          charitiesLoading={this.props.charities.isLoading}
+          charitiesErrMess={this.props.charities.errMess}
+          charity1={
+            this.props.charities.charities.filter(
+              charity => charity.featured
+            )[1]
+          }
+          charity2={
+            this.props.charities.charities.filter(
+              charity => charity.featured
+            )[2]
+          }
         />
       );
     };
@@ -33,14 +64,17 @@ class Main extends Component {
       return (
         <CharityDetail
           charity={
-            this.props.charities.filter(
+            this.props.charities.charities.filter(
               charity => charity.id === parseInt(match.params.charityId, 10)
             )[0]
           }
+          isLoading={this.props.charities.isLoading}
+          ErrMess={this.props.charities.errMess}
           comments={this.props.comments.filter(
             comment =>
               comment.charityId === parseInt(match.params.charityId, 10)
           )}
+          addComment={this.props.addComment}
         />
       );
     };
@@ -50,9 +84,15 @@ class Main extends Component {
         <Header />
         <Switch>
           <Route path="/home" component={HomePage} />
-          <Route exact path="/contact" component={Contact} />
           <Route
             exact
+            path="/contact"
+            component={() => (
+              <Contact resetFeedbackForm={this.props.resetFeedbackForm} />
+            )}
+          />
+          <Route
+            exact 
             path="/shops"
             component={() => <Shops charities={this.props.charities} />}
           />
@@ -66,4 +106,9 @@ class Main extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Main)
+);

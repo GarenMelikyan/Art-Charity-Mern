@@ -85,14 +85,18 @@ class Navbar extends Component {
 
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/register">
+                  <Button className="nav-link" color="link" to="/register">
                     Join Us
-                  </Link>
+                  </Button>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" onClick={this.toggleModal}>
+                  <Button
+                    className="nav-link"
+                    color="link"
+                    onClick={this.toggleModal}
+                  >
                     Login
-                  </Link>
+                  </Button>
                 </li>
               </ul>
             </div>

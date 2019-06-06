@@ -16,6 +16,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
+import { Loading } from "./LoadingComponent";
 
 const minLength = len => val => val && val.length >= len;
 const maxLength = len => val => !val || val.length <= len;
@@ -37,9 +38,13 @@ class CommentForm extends Component {
   }
 
   handleComment(values) {
-    console.log("Current state: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
     this.toggleModal();
+    this.props.addComment(
+      this.props.charityId,
+      values.rating,
+      values.author,
+      values.comment
+    );
   }
 
   render() {
@@ -116,7 +121,7 @@ class CommentForm extends Component {
   }
 }
 
-const RenderComments = ({ comments }) => {
+const RenderComments = ({ comments, addComment, charityId }) => {
   if (comments == null) {
     return <h1> no comments </h1>;
   }
@@ -139,7 +144,7 @@ const RenderComments = ({ comments }) => {
     <div className="col-12 col-md-5 m-1">
       <h4> Our Story => Visit our Shop</h4>
       <ul className="list-unstyled">{list}</ul>
-      <CommentForm />
+      <CommentForm charityId={charityId} addComment={addComment} />
     </div>
   );
 };
@@ -164,26 +169,43 @@ const RenderCharity = ({ charity }) => {
 };
 
 const CharityDetail = props => {
-  const charity = props.charity;
-  if (charity == null) {
-    return <div />;
-  }
-  return (
-    <div className="container">
-      <div className="row">
-        <Breadcrumb>
-          <BreadcrumbItem>
-            <Link to="/shops">Charity Shops</Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem active>{`${props.charity.name}`}</BreadcrumbItem>
-        </Breadcrumb>
+  if (props.isLoading) {
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
+        </div>
       </div>
-      <div className="row">
-        <RenderCharity charity={props.charity} />
-        <RenderComments charity={props.charity} comments={props.comments} />
+    );
+  } else if (props.errMess) {
+    return (
+      <div className="container">
+        <div className="row">
+          <h4>{props.errMess}</h4>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else if (props.charity != null)
+    return (
+      <div className="container">
+        <div className="row">
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/shops">Charity Shops</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>{`${props.charity.name}`}</BreadcrumbItem>
+          </Breadcrumb>
+        </div>
+        <div className="row">
+          <RenderCharity charity={props.charity} />
+          <RenderComments
+            charityId={props.charity.id}
+            comments={props.comments}
+            addComment={props.addComment}
+          />
+        </div>
+      </div>
+    );
 };
 
 export default CharityDetail;
