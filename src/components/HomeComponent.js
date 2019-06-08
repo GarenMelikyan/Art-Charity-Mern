@@ -10,16 +10,16 @@ function RenderCard({ item, isLoading, errMess }) {
   } else if (errMess) {
     return <h4>{errMess}</h4>;
   } else
-      return (
-        <Card>
-          <Link to={`/shops/${item.id}`}>
-            <CardImg src={item.image} alt={item.name} />
-            <CardBody>
-              <CardTitle>{item.name}</CardTitle>
-            </CardBody>
-          </Link>
-        </Card>
-      );
+    return (
+      <Card>
+        <Link to={`/shops/${item.id}`}>
+          <CardImg src={item.image} alt={item.name} />
+          <CardBody>
+            <CardTitle>{item.name}</CardTitle>
+          </CardBody>
+        </Link>
+      </Card>
+    );
 }
 function Home(props) {
   return (

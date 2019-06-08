@@ -92,7 +92,7 @@ class Main extends Component {
             )}
           />
           <Route
-            exact 
+            exact
             path="/shops"
             component={() => <Shops charities={this.props.charities} />}
           />

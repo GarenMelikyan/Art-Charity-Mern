@@ -13,7 +13,6 @@ export const addComment = (charityId, rating, author, comment) => ({
 
 export const fetchCharities = () => dispatch => {
   dispatch(charitiesLoading(true));
-
   setTimeout(() => {
     dispatch(addCharities(CHARITIES));
   }, 2000);
