@@ -3,8 +3,9 @@ import { Jumbotron } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Card, CardImg, CardBody, CardTitle } from "reactstrap";
 import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
-function RenderCard({ item, isLoading, errMess }) {
+function RenderCharity({ item, isLoading, errMess }) {
   if (isLoading) {
     return <Loading />;
   } else if (errMess) {
@@ -13,7 +14,7 @@ function RenderCard({ item, isLoading, errMess }) {
     return (
       <Card>
         <Link to={`/shops/${item.id}`}>
-          <CardImg src={item.image} alt={item.name} />
+          <CardImg src={baseUrl + item.image} alt={item.name} />
           <CardBody>
             <CardTitle>{item.name}</CardTitle>
           </CardBody>
@@ -21,6 +22,7 @@ function RenderCard({ item, isLoading, errMess }) {
       </Card>
     );
 }
+
 function Home(props) {
   return (
     <div className="container">
@@ -40,24 +42,26 @@ function Home(props) {
         </div>
       </Jumbotron>
       <div className="container">
-        <h3> Browse charity sales </h3>
+        <hr />
+        <h3> Our Charities </h3>
+        <hr />
         <div className="row align-items-start">
           <div className="col-12 col-md m-1">
-            <RenderCard
+            <RenderCharity
               item={props.charity0}
               isLoading={props.charitiesLoading}
               errMess={props.charitiesErrMess}
             />
           </div>
           <div className="col-12 col-md m-1">
-            <RenderCard
+            <RenderCharity
               item={props.charity1}
               isLoading={props.charitiesLoading}
               errMess={props.charitiesErrMess}
             />
           </div>
           <div className="col-12 col-md m-1">
-            <RenderCard
+            <RenderCharity
               item={props.charity2}
               isLoading={props.charitiesLoading}
               errMess={props.charitiesErrMess}

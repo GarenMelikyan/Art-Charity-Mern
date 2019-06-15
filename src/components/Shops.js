@@ -9,12 +9,17 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
 function RenderCharityItem({ charity }) {
   return (
     <Card>
       <Link to={`/shops/${charity.id}`}>
-        <CardImg width="100%" src={charity.image} alt={charity.name} />
+        <CardImg
+          width="100%"
+          src={baseUrl + charity.image}
+          alt={charity.name}
+        />
         <CardImgOverlay>
           <CardTitle>{charity.name}</CardTitle>
         </CardImgOverlay>

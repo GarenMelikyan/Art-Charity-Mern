@@ -7,7 +7,11 @@ import Home from "./HomeComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Contact from "./ContactComponent";
 import { connect } from "react-redux";
-import { addComment, fetchCharities } from "../redux/ActionCreators";
+import {
+  addComment,
+  fetchCharities,
+  fetchComments
+} from "../redux/ActionCreators";
 import { actions } from "react-redux-form";
 
 const mapStateToProps = state => {
@@ -25,6 +29,7 @@ const mapDispatchToProps = dispatch => ({
   fetchCharities: () => {
     dispatch(fetchCharities());
   },
+  fetchComments: () => dispatch(fetchComments()),
   resetFeedbackForm: () => {
     dispatch(actions.reset("feedback"));
   }
@@ -33,6 +38,7 @@ const mapDispatchToProps = dispatch => ({
 class Main extends Component {
   componentDidMount() {
     this.props.fetchCharities();
+    this.props.fetchComments();
   }
 
   render() {
@@ -69,11 +75,12 @@ class Main extends Component {
             )[0]
           }
           isLoading={this.props.charities.isLoading}
-          ErrMess={this.props.charities.errMess}
-          comments={this.props.comments.filter(
-            comment =>
-              comment.charityId === parseInt(match.params.charityId, 10)
+          errMess={this.props.charities.errMess}
+          comments={this.props.comments.comments.filter(
+            comments =>
+              comments.charityId === parseInt(match.params.charityId, 10)
           )}
+          commentsErrMess={this.props.comments.errMess}
           addComment={this.props.addComment}
         />
       );
@@ -96,7 +103,7 @@ class Main extends Component {
             path="/shops"
             component={() => <Shops charities={this.props.charities} />}
           />
-          <Route path="/shops/:charityId" component={CharityWithId} />
+          <Route exact path="/shops/:charityId" component={CharityWithId} />
           <Redirect to="/home" />
         </Switch>
 

@@ -1,10 +1,6 @@
 import React, { Component, Fragment } from "react";
 import {
-  Card,
-  CardImg,
-  CardBody,
-  CardText,
-  CardTitle,
+  Media,
   Breadcrumb,
   BreadcrumbItem,
   Modal,
@@ -17,6 +13,11 @@ import {
 import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
+const charityImg = {
+  height: "100px",
+  width: "120px"
+};
 
 const minLength = len => val => val && val.length >= len;
 const maxLength = len => val => !val || val.length <= len;
@@ -152,15 +153,23 @@ const RenderComments = ({ comments, addComment, charityId }) => {
 const RenderCharity = ({ charity }) => {
   if (charity != null) {
     return (
-      <div className="col-12 col-md-5 m-1">
-        <Card>
-          <CardImg width="100%" src={charity.image} alt={charity.image} />
-          <CardBody>
-            <CardTitle>{charity.name}</CardTitle>
-            <CardTitle>{charity.label}</CardTitle>
-            <CardText>{charity.description}</CardText>
-          </CardBody>
-        </Card>
+      <div className="container">
+        <div key={charity.id} className="col-12 mt-5">
+          <Media tag="li">
+            <Media left middle>
+              <Media
+                style={charityImg}
+                object
+                src={baseUrl + charity.image}
+                alt={charity.name}
+              />
+            </Media>
+            <Media body className="ml-5">
+              <Media heading>{charity.name}</Media>
+              <p>{charity.description}</p>
+            </Media>
+          </Media>
+        </div>
       </div>
     );
   } else {

@@ -1,8 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Charities } from "./charities";
-import { Promotions } from "./promotions";
 import { Comments } from "./comments";
-import { Leaders } from "./leaders";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { createForms } from "react-redux-form";
@@ -13,8 +11,6 @@ export const configureStore = () => {
     combineReducers({
       charities: Charities,
       comments: Comments,
-      leaders: Leaders,
-      promotions: Promotions,
       ...createForms({
         feedback: InitialFeedback
       })
