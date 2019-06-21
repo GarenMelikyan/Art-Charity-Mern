@@ -23,6 +23,23 @@ function RenderCharity({ item, isLoading, errMess }) {
     );
 }
 
+function RenderProduct({ item, isLoading, errMess }) {
+  if (isLoading) {
+    return <Loading />;
+  } else if (errMess) {
+    return <h4>{errMess}</h4>;
+  } else
+    return (
+      <Card>
+        <Link to={`/products/${item.id}`}>
+          <CardImg src={baseUrl + item.image} alt={item.name} />
+          <CardBody>
+            <CardTitle>{item.name}</CardTitle>
+          </CardBody>
+        </Link>
+      </Card>
+    );
+}
 function Home(props) {
   return (
     <div className="container">
@@ -43,7 +60,7 @@ function Home(props) {
       </Jumbotron>
       <div className="container">
         <hr />
-        <h3> Our Charities </h3>
+        <h3>Charities</h3>
         <hr />
         <div className="row align-items-start">
           <div className="col-12 col-md m-1">
@@ -65,6 +82,34 @@ function Home(props) {
               item={props.charity2}
               isLoading={props.charitiesLoading}
               errMess={props.charitiesErrMess}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <hr />
+        <h3> Arts and Crafts Sale</h3>
+        <hr />
+        <div className="row align-items-start">
+          <div className="col-12 col-md m-1">
+            <RenderProduct
+              item={props.product0}
+              isLoading={props.productsLoading}
+              errMess={props.productsErrMess}
+            />
+          </div>
+          <div className="col-12 col-md m-1">
+            <RenderProduct
+              item={props.product1}
+              isLoading={props.productsLoading}
+              errMess={props.productsErrMess}
+            />
+          </div>
+          <div className="col-12 col-md m-1">
+            <RenderProduct
+              item={props.product2}
+              isLoading={props.productsLoading}
+              errMess={props.productsErrMess}
             />
           </div>
         </div>

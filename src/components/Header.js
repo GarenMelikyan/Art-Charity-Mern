@@ -7,7 +7,6 @@ class Header extends Component {
     return (
       <Fragment>
         <Navbar />
-        
       </Fragment>
     );
   }
